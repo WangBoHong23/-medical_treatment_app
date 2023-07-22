@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="medicine_core" />
+        <module name="medical_device" />
+        <module name="medicine_common" />
+        <module name="medicine_feign" />
+        <module name="medicine_gateway" />
+        <module name="medical_device_app" />
+        <module name="order" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="medicine_web_demo" target="8" />
+      <module name="medicine_web_order" target="8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="medical_device" options="-parameters" />
+      <module name="medical_device_app" options="-parameters" />
+      <module name="medicine_common" options="-parameters" />
+      <module name="medicine_core" options="-parameters" />
+      <module name="medicine_feign" options="-parameters" />
+      <module name="medicine_gateway" options="-parameters" />
+      <module name="medicine_test" options="-parameters" />
+      <module name="medicine_web" options="-parameters" />
+      <module name="medicine_web_demo" options="-parameters" />
+      <module name="medicine_web_order" options="-parameters" />
+      <module name="medicine_zkth" options="-parameters" />
+      <module name="order" options="-parameters" />
+    </option>
+  </component>
+</project>
