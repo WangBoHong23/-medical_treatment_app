@@ -10,7 +10,27 @@
     <!--        from medical_partition-->
     <!--        where district_id = #{districtId}-->
     <!--    </select>-->
-
+    <select id="findShiftCarSetByEquipmentNumber">
+        select equipment_name,equipment_number,status,device_types,region,posture,electric_quantity
+        from medical_app_device
+        where equipment_number = #{equipmentNumber}
+    </select>
+    <delete id="DeleteTheDeviceBasedOnTheNumber">
+        delete from medical_app_device where equipment_number = #{equipmentNumber}
+    </delete>
+    <select id="ViewnetWorkInformationById">
+        select electric_quantity,ip_addr,MA,online_time,uplink_rate,downlink_rate
+        from medical_app_device
+        where equipment_number = #{equipmentNumber}
+    </select>
+    <update id="updateStatus">
+        update medical_app_device set status = #{status} where equipment_number = #{equipmentNumber}
+    </update>
+    <select id="findTransferTrolleySetByEquipmentNumber" resultType="com.zk.model.device.vos.transfer_trolley_set_VO">
+        select equipment_name,equipment_number,status,device_types,region,equipment_number,posture,temperature
+        from medical_app_device
+        where equipment_number = #{equipmentNumber}
+    </select>
     <select id="findRegionDataName" resultMap="regionData">
         select district_id,name
         from medical_partition

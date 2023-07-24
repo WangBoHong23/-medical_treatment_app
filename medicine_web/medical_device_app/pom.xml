@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>medical_app</artifactId>
+    <artifactId>medical_device_app</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

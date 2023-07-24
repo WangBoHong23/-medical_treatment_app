@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@TableName("medical_appuser")
+@TableName("medical_app_login")
 public class AppUser implements Serializable {
     /**
      * 主键

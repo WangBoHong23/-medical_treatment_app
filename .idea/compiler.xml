@@ -16,10 +16,6 @@
         <module name="order" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="medicine_web_demo" target="8" />
-      <module name="medicine_web_order" target="8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -31,8 +27,6 @@
       <module name="medicine_gateway" options="-parameters" />
       <module name="medicine_test" options="-parameters" />
       <module name="medicine_web" options="-parameters" />
-      <module name="medicine_web_demo" options="-parameters" />
-      <module name="medicine_web_order" options="-parameters" />
       <module name="medicine_zkth" options="-parameters" />
       <module name="order" options="-parameters" />
     </option>
