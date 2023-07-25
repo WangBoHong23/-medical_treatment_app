@@ -3,8 +3,10 @@ package com.zk.common.dtos;
 
 
 import com.zk.common.enums.AppHttpCodeEnum;
+import com.zk.model.device.pojos.MedicalAppDevice;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -65,6 +67,13 @@ public class ResponseResult<T> implements Serializable {
 
     public static ResponseResult errorResult(AppHttpCodeEnum enums, String 用户名或密码为空){
         return setAppHttpCodeEnum(enums,enums.getErrorMessage());
+    }
+
+    public static ResponseResult<MedicalAppDevice> okResult(List<MedicalAppDevice> records, long total) {
+        PageResponseResult pageResponseResult = new PageResponseResult();
+        pageResponseResult.setRecords(records);
+        pageResponseResult.setTotal((int) total);
+        return okResult(pageResponseResult);
     }
 
 

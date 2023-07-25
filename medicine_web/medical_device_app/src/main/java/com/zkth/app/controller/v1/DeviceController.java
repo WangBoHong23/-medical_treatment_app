@@ -1,5 +1,6 @@
 package com.zkth.app.controller.v1;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zk.common.dtos.ResponseResult;
 import com.zk.model.device.dtos.DeviceHomeDto;
 import com.zk.model.device.pojos.MedicalAppDevice;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 
 @RestController
@@ -182,47 +184,47 @@ public class DeviceController {
 
     // 接口 findRegion()查询第一个下拉框
     @GetMapping("/findRegion")
-    public ResponseResult<MedicalPartitionVO> findRegionData(@RequestParam Integer districtId
+    public ResponseResult<MedicalPartitionVO> findRegionData(@RequestParam(required = false) String districtId
     ) {
         //依靠第一个条件查询的结果
         List<MedicalPartitionVO> region = deviceService.findRegionDataName(districtId);
         return ResponseResult.okResult(region);
     }
 
-    //查询第二、三个下拉框
+
+    //查询第二
     @GetMapping("/findAppType")
-    public ResponseResult<MedicalAppType> findAppType(@RequestParam Integer typeId,
-                                                      @RequestParam String typeName) {
+    public ResponseResult<MedicalAppType> findAppType(@RequestParam(required = false) String typeId) {
         {
             //依靠第一个条件查询的结果
-            List<MedicalAppType> appType = deviceService.findAppTypeName(typeId, typeName);
+            List<MedicalAppType> appType = deviceService.findAppTypeName(typeId);
             return ResponseResult.okResult(appType);
         }
     }
-
-    //多参查询
-    @GetMapping("/findAppDevice")
-    public ResponseResult<MedicalAppDevice> findAppDevice(@RequestParam Integer typeId,
-                                                          @RequestParam String typeName,
-                                                          @RequestParam Integer districtId,
-                                                          @RequestParam Integer status,
-                                                          @RequestParam Integer equipmentNumber) {
-        //依靠第一个条件查询的结果
-        List<MedicalAppDevice> appDevice = deviceService.findAppDevice(typeId, typeName, districtId, status, equipmentNumber);
-        return ResponseResult.okResult(appDevice);
-    }
-
     //查询第三个下拉框 需要知道第二个下拉框的数据
-    @GetMapping("/findAppDevices")
-    public ResponseResult<MedicalAppDevice> findAppDeviceName(@RequestParam Integer deviceTypes,
-                                                              @RequestParam String equipmentName,
-                                                              @RequestParam Integer regionId,
-                                                              @RequestParam String region,
-                                                              @RequestParam Integer status,
-                                                              @RequestParam Integer equipmentNumber) {
-        //依靠第一个条件查询的结果
-        List<MedicalAppDevice> appDevices = deviceService.findAppDeviceName(deviceTypes, equipmentName, regionId, status, equipmentNumber, region);
-        return ResponseResult.okResult(appDevices);
+    @GetMapping("findDevice")
+    public ResponseResult<MedicalAppType> findDevices(@RequestParam(required = false) String typeId,
+                                                      @RequestParam(required = false) String typeName){
+        {
+            List<MedicalAppType> devices = deviceService.findDevices(typeId, typeName);
+            return ResponseResult.okResult(devices);
+        }
     }
-}
+
+
+        //分页查询
+        @GetMapping("/findAppDevicesPage")
+        public ResponseResult<MedicalAppDevice> findAppDeviceNamePage(@RequestParam(required = false) Integer deviceTypes,
+                                                              @RequestParam(required = false) String equipmentName,
+                                                              @RequestParam(required = false) Integer regionId,
+                                                              @RequestParam(required = false) String region,
+                                                              @RequestParam(required = false) Integer status,
+                                                              @RequestParam(required = false) Integer equipmentNumber,
+                                                              @RequestParam(required = false) Integer currentPage,
+                                                              @RequestParam(required = false) Integer pageSize) {
+        //依靠第一个条件查询的结果hu
+        Page<MedicalAppDevice> pageResult = deviceService.findAppDeviceNameWithPagination(deviceTypes, equipmentName, regionId, status, equipmentNumber, region, currentPage, pageSize);
+        return ResponseResult.okResult(pageResult);
+        }
+    }
 

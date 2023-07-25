@@ -1,6 +1,9 @@
 package com.zk.common.dtos;
 
+import com.zk.model.device.pojos.MedicalAppDevice;
+
 import java.io.Serializable;
+import java.util.List;
 
 public class PageResponseResult extends ResponseResult implements Serializable {
     private Integer currentPage;
@@ -40,5 +43,13 @@ public class PageResponseResult extends ResponseResult implements Serializable {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public void setRecords(List<MedicalAppDevice> records) {
+
+    }
+
+    public void setPageSize(Integer size) {
+
     }
 }

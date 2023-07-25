@@ -1,5 +1,6 @@
 package com.zkth.app.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zk.common.dtos.ResponseResult;
 import com.zk.model.device.dtos.DeviceHomeDto;
 import com.zk.model.device.pojos.MedicalAppDevice;
@@ -11,15 +12,11 @@ public interface DeviceService {
 
     ResponseResult list(DeviceHomeDto dto);
 
-    //List<MedicalPartitionVO> findRegionData(Integer districtId);
 
-    List<MedicalPartitionVO> findRegionDataName(Integer districtId);
+    List<MedicalPartitionVO> findRegionDataName(String districtId);
 
-    List<MedicalAppType> findAppTypeName(Integer typeId, String typeName);
+    List<MedicalAppType> findAppTypeName(String typeId);
 
-    List<MedicalAppDevice> findAppDevice(Integer typeId, String typeName, Integer districtId, Integer status, Integer equipmentNumber);
-
-    List<MedicalAppDevice> findAppDeviceName(Integer deviceTypes, String equipmentName, Integer regionId, Integer status, Integer equipmentNumber,String region);
 
     transfer_trolley_set_VO findTransferTrolleySetByEquipmentNumber(String equipmentNumber);
 
@@ -43,6 +40,10 @@ public interface DeviceService {
     void transferTrolleyOrientation(String equipmentNumber);
 
     void transferTrolleyDeviceRestart(String equipmentNumber);
+
+    List<MedicalAppType> findDevices(String typeId,String typeName);
+
+    Page<MedicalAppDevice> findAppDeviceNameWithPagination(Integer deviceTypes, String equipmentName, Integer regionId, Integer status, Integer equipmentNumber, String region, Integer currentPage, Integer pageSize);
 }
 
 
